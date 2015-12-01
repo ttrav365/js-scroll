@@ -1,2 +1,2 @@
 # js-scroll
-Coding Dojo JS Scroll assignment
+JS Scroll is an assignment for Coding Dojo's Javascript course.
