@@ -25,17 +25,33 @@
 
 	<script>
 
-		var words = ["fun", "exciting", "about not giving up", "being helpful", "being open", "what I learned at CodingDojo!"],
+		var words = ["fun", "exciting", "about not giving up", "being helpful", "being open", "what I learned at CodingDojo!", "an opportunity to express yourself"],
+			colors = {
+				yellow: '#b58900',
+				orange: '#cb4b16',
+				red: '#dc322f',
+				magenta: '#d33682',
+				violet: '#6c71c4',
+				blue: '#268bd2',
+				cyan: '#2aa198',
+				green: '#859900'
+			},
+			color_seq = [ colors.yellow, colors.orange, colors.red, colors.magenta, colors.violet,
+				colors.blue, colors.cyan, colors.green ],
 			el = document.getElementById('magic'),
 			word_counter = 0,
-			character_counter = 0;
+			character_counter = 0,
+			color_counter = 0;
 
 		function updateText()
 		{
-			el.innerHTML = el.innerHTML+words[word_counter][character_counter++];
-
-			if(character_counter == words[word_counter].length)
-			{
+			if (character_counter < words[word_counter].length) {
+				var next_char = words[word_counter][character_counter++];
+				if (next_char == ' ') {
+					next_char = "&nbsp;";
+				}
+				el.innerHTML = el.innerHTML + next_char;
+			} else {
 				word_counter++; 	//choose a different word
 				character_counter = 0;	//start over with the first character of the word
 				el.innerHTML = '';  //set the html to be blank
@@ -43,6 +59,11 @@
 				//if we're displaying the last word, go back to the first word
 				if(word_counter == words.length)
 					word_counter = 0;
+
+				// Set the color of the next word
+				el.style.color = color_seq[color_counter++];
+				if (color_counter == color_seq.length)
+					color_counter = 0;
 			}
 		}
 
